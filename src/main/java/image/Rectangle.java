@@ -20,10 +20,12 @@ public class Rectangle implements Shape {
             }
         }
     }
+    @Override
     public boolean contains(Point point){
         return (this.corner_left_up.x<=point.x && point.x<=this.corner_left_up.x+this.width // vérification des coordonnés en x
                 && this.corner_left_up.y>=point.y&& point.y>=this.corner_left_up.y-this.height);//vérification des coordonnées en y
     }
+    @Override
     public Color getColor(){ return this.color ;
 
     }
