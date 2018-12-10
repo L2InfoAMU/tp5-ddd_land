@@ -12,10 +12,8 @@ public class VectorImage implements Shape {
         this.shapes=shapes;
         this.width=width;
         this.height=height;
-        switch (this.shapes){
-            case Rectangle :
-
-        }
+        //switch (this.shapes){
+            //case Rectangle : }
 
     }
     public int getWidth(){
