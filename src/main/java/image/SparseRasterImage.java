@@ -50,8 +50,25 @@ public class SparseRasterImage extends RasterImage implements Image {
 
     }
     private void setPixelsColor(Color[][] pixels){
+        if(this.image.length==pixels.length && this.image[0].length==pixels[0].length)
+        {
+            for(int x =0 ;x<width;x++){
+                for(int y=0 ;y<height;y++){
+                    this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+                    this.map.put(new Point(x,y),pixels[x][y]);
+                }
+            }
+        }
+        else throw new Error("Dimension de la matrice de pixel mauvaise");
+    }
 
-
+    private void setPixelsColor(Color color){
+        for(int x=0 ;x<width;x++){
+            for(int y=0;y<height;y++){
+                this.image[x][y]=new Pixel(x,y,color);
+                this.map.put(new Point(x,y),color);
+            }
+        }
     }
 
     @Override
