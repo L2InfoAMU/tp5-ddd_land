@@ -2,7 +2,7 @@ package image;
 
 import javafx.scene.paint.Color;
 
-public class BruteRasterImage implements Image {
+public class BruteRasterImage extends RasterImage implements Image {
     int width ;
     int height ;
     Pixel[][] image;
@@ -35,8 +35,10 @@ public class BruteRasterImage implements Image {
 
 
     public void setPixelColor(Color color, int x, int y){
+
         this.image[x][y]=new Pixel(x,y,color);
     }
+
     private void setPixelsColor(Color[][] pixels){
         for(int x =0 ;x<width;x++){
             for(int y=0 ;y<height;y++){
