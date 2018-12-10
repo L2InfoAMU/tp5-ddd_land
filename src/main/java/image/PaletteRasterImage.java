@@ -47,11 +47,11 @@ public class PaletteRasterImage implements Image {
         return this.image[x][y].getColor();
     }
 
-    private void setPixelsColor(Color[][] pixels){
-        this.palette=pixels ;
-        for(int x =0 ;x<pixels.length;x++){
-            for(int y=0 ;y<pixels[0].length;y++){
-                this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+    private void setPixelsColor(Color color){
+
+        for(int x =0 ;x<this.width;x++){
+            for(int y=0 ;y<this.height;y++){
+                this.image[x][y]=new Pixel(x,y,color);
             }
         }
 
