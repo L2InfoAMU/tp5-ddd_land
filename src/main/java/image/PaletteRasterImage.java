@@ -20,7 +20,10 @@ public class PaletteRasterImage implements Image {
     }
 
     public PaletteRasterImage(Color[][] pixels){
-        this.image=new Pixel[pixels.length][pixels[0].length];
+        this.width=pixels.length ;
+        this.height=pixels[0].length;
+        this.palette =pixels ;
+        createRepresentation();
         for(int x =0 ;x<pixels.length;x++){
             for(int y=0 ;y<pixels[0].length;y++){
                 this.image[x][y]=new Pixel(x,y,pixels[x][y]);
@@ -32,18 +35,42 @@ public class PaletteRasterImage implements Image {
         this.palette=new Color[this.width][this.height];
         this.image =new Pixel[this.width][this.height];
     }
+
+    public void setPixelColor(Color color, int x, int y){
+        this.image[x][y]=new Pixel(x,y,color);
+    }
+
+
+
     @Override
     public Color getPixelColor(int x, int y) {
-        return null;
+        return this.image[x][y].getColor();
+    }
+
+    private void setPixelsColor(Color[][] pixels){
+        this.palette=pixels ;
+        for(int x =0 ;x<pixels.length;x++){
+            for(int y=0 ;y<pixels[0].length;y++){
+                this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+            }
+        }
+
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return this.width;
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return this.height;
     }
+    protected void setWidth(int width){
+        this.width=width ;
+    }
+    protected void setHeight(int height){
+        this.height=height ;
+    }
+
 }
