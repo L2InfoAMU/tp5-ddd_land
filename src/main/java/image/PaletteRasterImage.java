@@ -9,8 +9,8 @@ public class PaletteRasterImage extends RasterImage implements Image {
     Color[][] palette;
 
     public PaletteRasterImage(Color color, int width, int height){
-        this.width=width ;
-        this.height=height;
+        this.setWidth(width);
+        this.setHeight(height);
         createRepresentation();
         for(int x=0;x<width;x++){
             for(int y=0;y<height;y++){
@@ -20,8 +20,8 @@ public class PaletteRasterImage extends RasterImage implements Image {
     }
 
     public PaletteRasterImage(Color[][] pixels){
-        this.width=pixels.length ;
-        this.height=pixels[0].length;
+        this.setWidth(pixels.length);
+        this.setHeight(pixels[0].length);
         this.palette =pixels ;
         createRepresentation();
         for(int x =0 ;x<pixels.length;x++){
@@ -46,6 +46,18 @@ public class PaletteRasterImage extends RasterImage implements Image {
     @Override
     public Color getPixelColor(int x, int y) {
         return this.image[x][y].getColor();
+    }
+
+    public void setPixelsColor(Color[][] pixels){
+        if(this.image.length==pixels.length && this.image[0].length==pixels[0].length)
+        {
+            for(int x =0 ;x<width;x++){
+                for(int y=0 ;y<height;y++){
+                    this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+                }
+            }
+        }
+        else throw new Error("Dimension de la matrice de pixel mauvaise");
     }
 
     private void setPixelsColor(Color color){

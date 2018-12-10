@@ -8,8 +8,8 @@ public class BruteRasterImage extends RasterImage implements Image {
     Pixel[][] image;
 
     public BruteRasterImage(Color color, int width, int height){
-        this.width=width;
-        this.height=height;
+        this.setWidth(width);
+        this.setHeight(height);
         createRepresentation();
         for(int x=0;x<width;x++){
             for(int y=0;y<height;y++){
@@ -18,8 +18,8 @@ public class BruteRasterImage extends RasterImage implements Image {
         }
     }
     public BruteRasterImage(Color[][] colors){
-        this.width=colors.length;
-        this.height=colors[0].length;
+        this.setWidth(colors.length);
+        this.setHeight(colors[0].length);
         createRepresentation();
         for(int x =0 ;x<colors.length;x++){
             for(int y=0 ;y<colors[0].length;y++){
@@ -40,11 +40,15 @@ public class BruteRasterImage extends RasterImage implements Image {
     }
 
     private void setPixelsColor(Color[][] pixels){
-        for(int x =0 ;x<width;x++){
-            for(int y=0 ;y<height;y++){
-                this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+        if(this.image.length==pixels.length && this.image[0].length==pixels[0].length)
+        {
+            for(int x =0 ;x<width;x++){
+                for(int y=0 ;y<height;y++){
+                    this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+                }
             }
         }
+        else throw new Error("Dimension de la matrice de pixel mauvaise");
     }
 
     private void setPixelsColor(Color color){
