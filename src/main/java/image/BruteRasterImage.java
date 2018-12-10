@@ -8,8 +8,6 @@ public class BruteRasterImage implements Image {
     int height ;
     Pixel[][] image;
 
-    Color color ;
-
     public BruteRasterImage(Color color, int width, int height){
         for(int x=0;x<width;x++){
             for(int y=0;y<height;y++){
@@ -18,7 +16,11 @@ public class BruteRasterImage implements Image {
         }
     }
     public BruteRasterImage(Color[][] colors){
-        //??//
+        for(int x =0 ;x<colors.length;x++){
+            for(int y=0 ;y<colors[0].length;y++){
+                this.image[x][y]=new Pixel(x,y,colors[x][y]);
+            }
+        }
     }
 
     public void createRepresentation(){
@@ -30,7 +32,11 @@ public class BruteRasterImage implements Image {
         this.image[x][y]=new Pixel(x,y,color);
     }
     private void setPixelsColor(Color[][] pixels){
-        //??//
+        for(int x =0 ;x<width;x++){
+            for(int y=0 ;y<height;y++){
+                this.image[x][y]=new Pixel(x,y,pixels[x][y]);
+            }
+        }
     }
 
     private void setPixelsColor(Color color){
